@@ -1,1 +1,66 @@
-git credentialsId: 'f57ccdab-f5db-4730-8267-7571bd823439', url: 'https://github.com/d3k3ijz3r/java-todo.git'
+pipeline {
+    agent { label 'linux'}
+    tools {
+        nodejs "node"
+        }
+          {
+            gradle 8.1.1
+        }
+
+    stages { 
+
+        environment       {
+            REPO_PATH='/home/d3k3ijz3r/IP1_DEVOPS3/gallery'
+            APP_NAME='test'
+            MY_FUN = load 'testfun.groovy'
+        }
+        stage('Checkout') {
+            steps{
+                //Checkout the source code from the github repository
+                git 'git credentialsId: 'f57ccdab-f5db-4730-8267-7571bd823439', url: 'https://github.com/d3k3ijz3r/java-todo.git''
+            }
+        }
+        stage('Build') {
+            steps {
+                //BUiling project using Gradle
+                sh 'gradle build' 
+            }
+        }
+        stage('Test') {
+                    steps{
+                        sh'./'
+                    }
+        }
+        stage ('Deliver') {
+                        steps{
+                            sh'./'
+                            input message:''
+                            sh'./.'
+                        }
+        stage('Deploy'){
+            steps{
+                //Deploy to render
+                sh 'node server.js'
+            }
+        }
+        stage ('Notification') {
+                emailtext {
+                        subject: "Job completed",
+                        body: "Jenkins Pipeline Job for "
+                        to: "build@alerts.com"
+                }
+        }
+        }
+    }
+    post {
+        always {
+            script {
+                if (getContext(hudson.FilePath)) {
+                    deleteDir()
+                }
+            }
+        }
+    }
+}
+
+ 
