@@ -8,7 +8,7 @@ pipeline {
             steps{
                 //Checkout the source code from the github repository
                 git branch: 'master', 
-                git 'git credentialsId: 'f57ccdab-f5db-4730-8267-7571bd823439', url: 'https://github.com/d3k3ijz3r/java-todo.git''
+                url: 'https://github.com/d3k3ijz3r/java-todo.git'
                 }
             }
         
@@ -18,16 +18,10 @@ pipeline {
                 sh 'npm install' 
             }
         }
-        
-        stage('Test') {
-            steps{
-                sh 'npm install pm2-g'
-            }
-        } 
 
         stage('Deploy') {
             steps{
-                sh 'pm2 start server.js'
+                sh 'startOrRestart server.js'
             }
         }
 
