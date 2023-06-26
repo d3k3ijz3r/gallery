@@ -1,6 +1,15 @@
 pipeline {
     agent any 
-    tools {nodejs "nodejs"}
+        tools {nodejs "nodejs"}
+            
+                docker { 
+                    image 'node:6-alpine'
+                    args '-p 3000:3000'
+                    }
+        environment {
+            CI = 'true'
+        }
+        
 
     stages { 
 
@@ -22,7 +31,7 @@ pipeline {
         stage ('Build') {
             steps { 
                 //Builds node 
-                sh 'npm build'
+                sh 'npm install'
             }
         }
 
