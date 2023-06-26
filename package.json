@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha --exit", 
-    "build": "npm install"
+    "test": "mocha --exit"
   },
   "keywords": [],
   "author": "",
