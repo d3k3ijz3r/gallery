@@ -22,7 +22,7 @@ pipeline {
         stage ('Build') {
             steps { 
                 //Builds node 
-                sh 'npm run build '
+                sh 'npm build'
             }
         }
 
@@ -43,6 +43,7 @@ pipeline {
 
             //Deploying 
             sh 'render deploy --name IP_PROJECT_DEKEIJZER --branch master'
+            sh 'npm start'
             }
         }
 
