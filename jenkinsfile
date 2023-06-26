@@ -1,15 +1,15 @@
 pipeline {
     agent any
         tools {nodejs "nodejs"}
-        
-        triggers {
+
+    stages { 
+
+            triggers {
             //triggering pipeline only when commiting changes to branch
             $class: 'PollingGitSCM',
             branches: [[name: 'main']],
             pollSCM: true
         }
-
-    stages { 
         
         stage('Clone repository') {
             steps{
