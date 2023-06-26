@@ -3,15 +3,7 @@ pipeline {
         tools {nodejs "nodejs"}
 
     stages { 
-
-        docker { 
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-
-        environment {
-            CI = 'true'
-        }
+        
         stage('Clone repository') {
             steps{
                 //Checkout the source code from the github repository
