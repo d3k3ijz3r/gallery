@@ -1,11 +1,10 @@
 pipeline {
     agent any
-        tools {nodejs "nodejs"}
 
         triggers {
             //triggering pipeline every new commit to branch 
             scm('*5****')
-            
+
             //Or, triggering pipeline only when commiting changes to a specific branch
             scm([
             $class: 'PollingGitSCM',
