@@ -3,13 +3,6 @@ pipeline {
         tools {nodejs "nodejs"}
 
     stages { 
-
-            triggers {
-            //triggering pipeline only when commiting changes to branch
-            $class: 'PollingGitSCM',
-            branches: [[name: 'main']],
-            pollSCM: true
-        }
         
         stage('Clone repository') {
             steps{
@@ -47,7 +40,15 @@ pipeline {
             }
         }
 
-    }     
+    }
+
+    
+            triggers {
+            //triggering pipeline only when commiting changes to branch
+            $class: 'PollingGitSCM',
+            branches: [[name: 'main']],
+            pollSCM: true
+        }     
     
 }
 
