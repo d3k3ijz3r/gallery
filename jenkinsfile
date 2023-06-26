@@ -19,9 +19,30 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage ('Build') {
+            steps { 
+                //Builds node 
+                sh 'npm run build '
+            }
+        }
+
+        stage ('Run Tests') {
+            steps {
+                //Testing with npm
+                sh 'npm test'
+            }
+        }
+
+        stage('Deploy to Render') {
             steps{
-                sh 'startOrRestart server.js'
+            //Installing render CLI 
+            sh 'curl -sL https://render.com/install.sh' | sh 
+
+            //Authentication
+            sh 'render login --email dekegijo@gmail.com --password rnd_Cws9W8j9NRpdBPFMCeaiwIo5kPt0'
+
+            //Deploying 
+            sh 'render deploy --name IP_PROJECT_DEKEIJZER --branch master'
             }
         }
 
