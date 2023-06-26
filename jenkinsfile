@@ -1,20 +1,7 @@
 pipeline {
     agent any
-
-        triggers {
-            //triggering pipeline every new commit to branch 
-            scm('*5****')
-
-            //Or, triggering pipeline only when commiting changes to a specific branch
-            scm([
-            $class: 'PollingGitSCM',
-            branches: [[name: 'main']],
-            pollSCM: true
-
-            ])
-        }     
+        tools {nodejs "nodejs"}
     
-
     stages { 
         
         stage('Clone repository') {
@@ -46,7 +33,7 @@ pipeline {
             }
         }
 
-        stage('Deploy Vercel') {
+        stage('Deploy to Vercel') {
             steps{
                 sh 'npm install -g vercel'
                 sh 'vercel --token ob6QqIouXK689gK1zyubeZmx'
