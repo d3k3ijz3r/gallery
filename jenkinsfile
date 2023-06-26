@@ -8,7 +8,7 @@ pipeline {
             steps{
                 //Checkout the source code from the github repository
                 git branch: 'master', 
-                url: 'https://github.com/d3k3ijz3r/java-todo.git'
+                credentialsId: 'f57ccdab-f5db-4730-8267-7571bd823439', url: 'https://github.com/d3k3ijz3r/gallery.git'
                 }
             }
         
