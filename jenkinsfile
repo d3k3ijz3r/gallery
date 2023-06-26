@@ -1,6 +1,13 @@
 pipeline {
     agent any
         tools {nodejs "nodejs"}
+        
+        triggers {
+            //triggering pipeline only when commiting changes to branch
+            $class: 'PollingGitSCM',
+            branches: [[name: 'master']],
+            pollSCM: true
+        }
 
     stages { 
         
