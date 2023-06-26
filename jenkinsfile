@@ -5,7 +5,7 @@ pipeline {
         triggers {
             //triggering pipeline only when commiting changes to branch
             $class: 'PollingGitSCM',
-            branches: [[name: 'master']],
+            branches: [[name: 'main']],
             pollSCM: true
         }
 
