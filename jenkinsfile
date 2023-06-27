@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
         tools {nodejs "nodejs"}
     
     stages { 
@@ -13,7 +13,7 @@ pipeline {
                 }
             }
         
-        stage('Install depndencies') {
+        stage('Install dependencies') {
             steps {
                 //Test
                 sh 'npm install' 
@@ -31,6 +31,29 @@ pipeline {
             steps {
                 //Testing with npm
                 sh 'npm test'
+            }
+        }
+
+        post {
+            success {
+                script{ 
+                    slackSend (
+                        channel: '#georgedekeijzer_ip1',
+                        color:'good',
+                        message: "Deployment successful! Build ID: ${env.BUILD_ID}",
+                        webhookUrl: 'https://hooks.slack.com/services/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'
+                    )
+                }
+            }
+            failure {
+                script (
+                    slackSend (
+                        channel: '#georgedekeijzer_ip1',
+                        color: 'danger'
+                        message: "Deployment unnsuccesful! Build ID: ${env.BUILD_ID}",
+                        webhookUrl: 'https://hooks.slack.com/services/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'
+                    )
+                )
             }
         }
 
