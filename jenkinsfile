@@ -29,8 +29,18 @@ pipeline {
         stage ('Run Tests') {
             steps {
                 //Testing with npm
+                try {
                 sh 'npm test'
-            }
+                } catch (Exception e) {
+                    currentBuild.result = 'FAILURE'
+                    emailext (
+                        subject: "Test Failure in Build #${env.BUILD_NUMBER}",
+                        body: "The test step failed in build #${env.BUILD_NUMBER}. Please invesitage.",
+                        to: 'george.dekeijzer@student.moringaschool.com'
+                    )
+                    error "Test failure detected."
+                }
+            }    
         }
 
           stage('Send Slack Notification') {
