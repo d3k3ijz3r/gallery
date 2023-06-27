@@ -22,7 +22,7 @@ pipeline {
         stage ('Build') {
             steps { 
                 //Builds node 
-                sh 'node server.js &'
+                sh 'node index.js &'
             }
         }
 
