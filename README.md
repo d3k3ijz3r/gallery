@@ -5,7 +5,7 @@
 * DATE : '27/06/2023
 
 ## DOMAIN URL
-* [https://gallery-zeta-ten.vercel.app/]
+* [https://gallery-zeta-ten.vercel.app/] or [https://gallery-d3k3ijz3r.vercel.app/]
 
 This README shows the details taken to run the web application. 
 
