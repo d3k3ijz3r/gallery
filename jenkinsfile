@@ -34,7 +34,7 @@ pipeline {
             }    
         }
 
-          stage('Send Slack Notification') {
+        stage('Send Slack Notification') {
              steps {
                 script {
                     slackSend (
@@ -49,8 +49,8 @@ pipeline {
 
         stage('Deploy to Vercel') {
             steps{
-                sh 'npm install -g vercel'
-                sh 'vercel --token '
+                sh 'npm start'
+                
             }
         }
 
