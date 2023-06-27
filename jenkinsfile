@@ -34,28 +34,18 @@ pipeline {
             }
         }
 
-        post {
-            success {
-                script{ 
-                    slackSend (
-                        channel: '#georgedekeijzer_ip1',
-                        color:'good',
-                        message: "Deployment successful! Build ID: ${env.BUILD_ID}",
-                        webhookUrl: 'https://hooks.slack.com/services/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'
-                    )
-                }
-            }
-            failure {
-                script (
-                    slackSend (
-                        channel: '#georgedekeijzer_ip1',
-                        color: 'danger'
-                        message: "Deployment unnsuccesful! Build ID: ${env.BUILD_ID}",
-                        webhookUrl: 'https://hooks.slack.com/services/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'
-                    )
+       stage ('Send slack notification') {
+        steps{
+            script{
+                slackSend (
+                    channel: '#georgedekeijzer_ip1'
+                    color: currentBuild.result == 'SUCCESS' ? 'good' : 'danger',
+                    message:currentBuild.result == 'SUCCESS' ? "Deployment successful! Build ID: ${env.BUILD_ID}" : "Deployment failed! Build ID: ${env.BUILD_ID}",
+                    webhookUrl:https://hooks.slack.com/services/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
                 )
             }
         }
+    }
 
         stage('Deploy to Vercel') {
             steps{
