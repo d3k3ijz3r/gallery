@@ -2,10 +2,6 @@ pipeline {
     agent any
         tools {nodejs "nodejs"}
 
-        options {
-            timeout (time: 2, unit: 'MINUTES')
-        }
-    
     stages { 
         
         stage('Clone repository') {
@@ -53,7 +49,12 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps{
+            
+            options {
+                timeout (time: 2, unit: 'MINUTES')
+            }
+
+            steps {
                 sh 'npm start' 
                 sh 'vercel --token prj_ecIbFWzsjvoqsRBk9UkVcjzDNNKn --prod'
                 
