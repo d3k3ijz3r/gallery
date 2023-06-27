@@ -22,7 +22,7 @@ pipeline {
         stage ('Build') {
             steps { 
                 //Builds node 
-                sh 'npm start'
+                sh 'node server.js &'
             }
         }
 
