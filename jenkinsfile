@@ -37,10 +37,10 @@ pipeline {
              steps {
                 script {
                     slackSend (
-                        channel: georgedekeijzer_ip1,
+                        channel: '#georgedekeijzer_ip1',
                         color: currentBuild.result == 'SUCCESS' ? 'good' : 'danger',
                         message: currentBuild.result == 'SUCCESS' ? "Deployment successful! Build ID: ${env.BUILD_ID}" : "Deployment failed! Build ID: ${env.BUILD_ID}",
-                        webhookUrl: https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYY/zzzzzzzzzzzzzzzzzzzzzzzz 
+                        webhookUrl: 'https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYY/zzzzzzzzzzzzzzzzzzzzzzzz' 
                     )
                  }
             }
