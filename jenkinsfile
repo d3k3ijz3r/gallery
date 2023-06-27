@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
         tools {nodejs "nodejs"}
     
     stages { 
@@ -41,7 +40,7 @@ pipeline {
                     channel: '#georgedekeijzer_ip1'
                     color: currentBuild.result == 'SUCCESS' ? 'good' : 'danger',
                     message:currentBuild.result == 'SUCCESS' ? "Deployment successful! Build ID: ${env.BUILD_ID}" : "Deployment failed! Build ID: ${env.BUILD_ID}",
-                    webhookUrl:https://hooks.slack.com/services/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
+                    webhookUrl: 'https://hooks.slack.com/services/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'
                 )
             }
         }
