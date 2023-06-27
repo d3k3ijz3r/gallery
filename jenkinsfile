@@ -33,6 +33,19 @@ pipeline {
             }
         }
 
+          stage('Send Slack Notification') {
+             steps {
+                script {
+                    slackSend (
+                        channel: georgedekeijzer_ip1,
+                        color: currentBuild.result == 'SUCCESS' ? 'good' : 'danger',
+                        message: currentBuild.result == 'SUCCESS' ? "Deployment successful! Build ID: ${env.BUILD_ID}" : "Deployment failed! Build ID: ${env.BUILD_ID}",
+                        webhookUrl: https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYY/zzzzzzzzzzzzzzzzzzzzzzzz 
+                    )
+                 }
+            }
+        }
+
         stage('Deploy to Vercel') {
             steps{
                 sh 'npm install -g vercel'
