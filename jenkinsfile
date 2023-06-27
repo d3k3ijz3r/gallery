@@ -1,6 +1,10 @@
 pipeline {
     agent any
         tools {nodejs "nodejs"}
+
+        options {
+            timeout (time: 5, unit: 'MINUTES')
+        }
     
     stages { 
         
@@ -41,6 +45,7 @@ pipeline {
                         channel: '#georgedekeijzer_ip1',
                         color: currentBuild.result == 'SUCCESS' ? 'good' : 'danger',
                         message: currentBuild.result == 'SUCCESS' ? "Deployment successful! Build ID: ${env.BUILD_ID}" : "Deployment failed! Build ID: ${env.BUILD_ID}",
+        
                         webhookUrl: 'https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYY/zzzzzzzzzzzzzzzzzzzzzzzz' 
                     )
                  }
