@@ -32,6 +32,7 @@ Installed the following on my computer
 Building and connecting to database using node
 
 * 'node index.js'
+Made changes to css and ejs files to add milestones 
 
 ## Testing
 Merged two branches together to include a test file 
