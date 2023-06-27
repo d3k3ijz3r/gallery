@@ -4,6 +4,9 @@
 * CLASS: 'DevOpsB2C-03'  
 * DATE : '27/06/2023
 
+## DOMAIN URL
+* [https://gallery-zeta-ten.vercel.app/]
+
 This README shows the details taken to run the web application. 
 
 
@@ -40,6 +43,7 @@ Or else it sends an email if build has failed.
 
 * 'npm start' 
 * Havent been able to deploy successfuly on any hosting site e.g heroku, render, vercel etc 
+* Error 404 
 
 ## Slack integration
 
